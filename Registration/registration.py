@@ -1,29 +1,40 @@
 import tkinter as tk
+from tkinter import filedialog
+import pandas as pd
 from openpyxl import *
 from tkinter.messagebox import showinfo
+def open():
+    path=filedialog.askopenfilename()           #ask for the file location,locate where your file is placed
+    df = pd.read_excel(path)                    #read the file path
+    print(df)                                   #print the data in file
 def save():
-    fname=entry.get()
-    lname=entry1.get()
-    age=entry2.get()
-    email=entry3.get()
-    mobile=entry4.get()
-    city=entry5.get()
-    wb=Workbook()
-    ws=wb.active
-    ws['A1']="First Name"
+    fname = entry.get()
+    lname = entry1.get()
+    age = entry2.get()
+    email = entry3.get()
+    mobile = entry4.get()
+    city = entry5.get()
+    wb = Workbook()
+    ws = wb.active
+    ws['A1'] = "First Name"
     ws['B1'] = "Last Name"
     ws['C1'] = "Age"
     ws['D1'] = "Email"
     ws['E1'] = "Mobile"
-    ws['F1']="City"
+    ws['F1'] = "City"
     ws['A2']=fname
     ws['B2']=lname
     ws['C2']=age
     ws['D2']=email
     ws['E2']=mobile
     ws['F2']=city
-    wb.save(r'D:\Mini codes\Registration\reg.csv')
+    wb.save(r'D:\Mini codes\Registration\reg1.xlsx')     #use reg1.xlsx to store new data
     showinfo("Saved","Your Entry has been saved")
+    file1 = pd.read_excel("reg.xlsx")                    #use reg.xlsx to store all the data to avoid rewriting
+    file2 = pd.read_excel("reg1.xlsx")
+    all = [file1, file2]                                 #define the sequence of data to be stored
+    append = pd.concat(all)                              #concatenate the files
+    append.to_excel("reg.xlsx", index=False)             #write the result to reg.xlsx
 def clear():
     entry.delete(0, tk.END)
     entry1.delete(0, tk.END)
@@ -61,4 +72,6 @@ button = tk.Button(win, text="Register",command=save)
 button.grid(row=6, column=0, padx=8, pady=8)
 button1 = tk.Button(win, text="Clear",command=clear)
 button1.grid(row=6, column=1, padx=8, pady=8)
+button2=tk.Button(win,text="Load Excel",command=open)
+button2.grid(row=6, column=2, padx=8, pady=8)
 win.mainloop()
