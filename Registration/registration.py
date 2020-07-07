@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog                #File dialogs help you open, save files or directories.
 import pandas as pd
 from openpyxl import *
 from tkinter.messagebox import showinfo
