@@ -21,7 +21,8 @@ def game():
         win1.destroy()
         showinfo("QUIT","You have quit the game")
         exit()
-    words=["programming","coding","helicopter","aeroplane","homosapiens","furniture","biology","youtube","functions","window","operating","america","configuration","terminal","finished","libraries"]
+    words=["programming","coding","helicopter","aeroplane","homosapiens","furniture","biology","youtube","functions",
+           "window","operating","america","configuration","terminal","finished","libraries"]
     word=random.randint(0,(len(words)-1))
     start=timer()
     win1=tk.Tk()
